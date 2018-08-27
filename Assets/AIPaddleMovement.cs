@@ -20,8 +20,8 @@ public class AIPaddleMovement : MonoBehaviour {
 	void Move () {
 		if (!ball)
 			ball = GameObject.FindGameObjectWithTag ("Ball");
-
-		if (ball.GetComponent<Ball> ().ballDirection == Vector2.right) {
+        /*
+		if (ball.GetComponent<BallControl> ().ballDirection == Vector2.right) {
 			ballPosition = ball.transform.localPosition;
 
 			if (transform.localPosition.y > bottomBounds && ballPosition.y < transform.localPosition.y) {
@@ -32,5 +32,6 @@ public class AIPaddleMovement : MonoBehaviour {
 				transform.localPosition += new Vector3 (0, moveSpeed * Time.deltaTime, 0);
 			}
 		}
+        */
 	}
 }

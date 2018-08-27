@@ -3,44 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerPaddleMovement : MonoBehaviour {
-
-    public KeyCode moveUp = KeyCode.W;
-    public KeyCode moveDown = KeyCode.S;
-    public float speed = 10.0f;
-    public float boundY = 2.25f;
-    private Rigidbody2D rb2d;
-
 	// Use this for initialization
 	void Start () {
-        rb2d = GetComponent<Rigidbody2D>();
+        //Set our rigidbody property. Might be worth null checking this in the future if for some reason this doesn't return as expected.
+        _rigidbody = GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        var vel = rb2d.velocity;
-        if (Input.GetKey(moveUp))
+        //Get the current velocity from our rigidbody property
+        Vector2 velocity = _rigidbody.velocity;
+
+        if (Input.GetKey(_moveUp))
         {
-            vel.y = speed;
+            velocity.y = _speed;
         }
-        else if (Input.GetKey(moveDown))
+        else if (Input.GetKey(_moveDown))
         {
-            vel.y = -speed;
+            velocity.y = -_speed;
         }
         else
         {
-            vel.y = 0;
+            velocity.y = 0;
         }
-        rb2d.velocity = vel;
 
-        var pos = transform.position;
-        if (pos.y > boundY)
+        //Set the rigidbody property to our new velocity
+        _rigidbody.velocity = velocity;
+
+        //Transform is a property of our gameobject. Fetch our gameobject's position.
+        Vector3 position = transform.position;
+
+        if (position.y > _movementBound)
         {
-            pos.y = boundY;
+            position.y = _movementBound;
         }
-        else if (pos.y < -boundY)
+        else if (position.y < -_movementBound)
         {
-            pos.y = -boundY;
+            position.y = -_movementBound;
         }
-        transform.position = pos;
+
+        //Set our position so we can't go outside our defined bounds.
+        transform.position = position;
     }
+
+    [SerializeField]
+    private KeyCode _moveUp = KeyCode.W;
+    [SerializeField]
+    private KeyCode _moveDown = KeyCode.S;
+    [SerializeField]
+    private float _speed = 10.0f;
+    [SerializeField]
+    private float _movementBound = 3.6f;
+
+    private Rigidbody2D _rigidbody;
 }
