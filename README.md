@@ -13,3 +13,5 @@ If you wish to open the project files, make sure you have Unity 2018.2.5f1 or la
 The game will give you instruction on how to move, but in case you want a head start- you can move your character "up" with the "w" key. You can move your character "down" with the "s" key. You are the leftmost rectangular paddle, and the ball will always serve to you after a 2 second delay.
 
 ### NOTE: The game may not function well on low aspect ratios! If you can not see your paddles during gameplay change your display resolution! 16:9 works best!
+
+![](https://puu.sh/BmUE1/c6b2c42b9d.png)
